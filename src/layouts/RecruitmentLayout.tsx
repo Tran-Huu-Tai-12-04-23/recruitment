@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import redirectIfUser from '../routes/configuration/_redirectIfUser';
 
 export default function RecruitmentLayout() {
     return (
@@ -11,9 +12,7 @@ export default function RecruitmentLayout() {
                     </li>
                 </ul>
             </nav>
-
             <hr />
-
             <Outlet />
         </div>
     );

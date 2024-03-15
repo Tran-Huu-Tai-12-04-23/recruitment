@@ -1,27 +1,42 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import redirectIfUser from './_redirectIfUser'; // Assuming this handles authentication checks
+import { createBrowserRouter } from 'react-router-dom';
+import redirectIfUser from './_redirectIfUser';
 
 // Import your components
 import Home from '../../pages/home';
 import RecruitmentLayout from '../../layouts/RecruitmentLayout'; // Assuming correct path
+import Login from '../../pages/auth/login';
+import ForgotPassword from '../../pages/auth/forgot-password';
+import { AuthLayout } from '../../layouts';
+import ResetPassword from '../../pages/auth/forgot-password/reset-password';
 
 export const router = createBrowserRouter([
     {
-        path: '/',
-        element: false ? <Navigate to="/login" replace /> : <Home />,
-    },
-    {
-        path: '/recruitment',
-        element: <RecruitmentLayout />,
+        path: '/auth',
+        element: <AuthLayout children={undefined} />,
         children: [
             {
-                path: '/',
-                element: <Home />,
+                path: 'login',
+                element: <Login />,
+            },
+            {
+                path: 'forgot-password',
+                element: <ForgotPassword />,
+            },
+            {
+                path: 'reset-password',
+                element: <ResetPassword />,
             },
         ],
     },
+
     {
-        path: '*',
-        element: <div>404 Not Found</div>,
+        path: '/',
+        element: <RecruitmentLayout />,
+        children: [
+            {
+                path: '',
+                element: <Home />,
+            },
+        ],
     },
 ]);

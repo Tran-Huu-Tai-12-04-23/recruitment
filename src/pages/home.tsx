@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import { useDeviceType } from '../hooks';
 
 type HomeProps = {
@@ -10,6 +11,7 @@ function Home(props: HomeProps) {
             {useDevice}
             {'hello'}
             {props.children}
+            <Outlet />
         </div>
     );
 }
