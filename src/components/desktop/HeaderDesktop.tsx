@@ -31,7 +31,7 @@ function HeaderDesktop() {
         },
     ];
     return (
-        <div className="h-header fixed right-0 left-0 top-0 bg-white p-2">
+        <div className="h-header fixed right-0 left-0 top-0 bg-white p-2 z-[10000000] ">
             <div className="max-w-screen-xl w-full m-auto h-full">
                 <div className="w-full h-full flex justify-between items-center ">
                     <div className="flex justify-center items-center gap-2 ">
