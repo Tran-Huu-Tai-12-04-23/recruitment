@@ -10,7 +10,7 @@ type AuthLayoutProps = {
 function AuthLayout(props: AuthLayoutProps) {
     return (
         <div className="w-screen flex justify-center pt-10">
-            <div className="max-w-[70rem] w-full ">
+            <div className="max-w-screen-xl w-full ">
                 <div className="grid grid-cols-2 ">
                     <div className="flex justify-start items-center gap-2 ">
                         <CompanyIcon1 />

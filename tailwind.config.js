@@ -17,6 +17,15 @@ module.exports = {
             borderRadius: {
                 primary: '8px',
             },
+            height: {
+                header: '72px',
+            },
+            margin: {
+                header: '72px',
+            },
+            padding: {
+                header: '72px',
+            },
         },
     },
     plugins: [],
