@@ -2,11 +2,12 @@ import { Flex, Layout, Pagination, Typography } from 'antd';
 import { JobItem } from '../../components';
 import { useDeviceType } from '../../hooks';
 import FilterBar from './FilterBar';
+import NoJob from './NoJob';
 
-type HomeProps = {
+type RecruitmentPageProps = {
     children?: React.ReactNode;
 };
-function Home(props: HomeProps) {
+function RecruitmentPage(props: RecruitmentPageProps) {
     const useDevice = useDeviceType();
     return (
         <div className="pt-header pb-[144px]">
@@ -25,11 +26,12 @@ function Home(props: HomeProps) {
                 ))}
             </Flex>
 
-            <Layout className="flex justify-center items-center mt-4">
+            <Layout className="flex justify-center items-center mt-4 bg-transparent ">
                 <Pagination defaultCurrent={1} total={50} />
             </Layout>
+            {/* <NoJob /> */}
         </div>
     );
 }
 
-export default Home;
+export default RecruitmentPage;

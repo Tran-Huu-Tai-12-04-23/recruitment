@@ -1,7 +1,8 @@
 import ReCAPTCHA from 'react-google-recaptcha';
-import { Button, Checkbox, Form, FormProps, Input, Select } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Typography, Checkbox, Form, FormProps, Input, Select, Flex } from 'antd';
 import ArrowIcon from '../../../assets/icon/arrow';
+import { path } from '../../../routes/path';
+import { useRouter } from '../../../routes/hooks';
 
 type FieldType = {
     email?: string;
@@ -20,12 +21,13 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 };
 
 function Login() {
+    const router = useRouter();
     function onChange(value: any) {
         console.log('Captcha value:', value);
     }
     return (
         <>
-            <h1 className="text-primary text-[36px] font-roboto">Đăng nhập</h1>
+            <Typography className="text-primary font-[700] text-[36px] font-roboto">Đăng nhập</Typography>
             <Form
                 name=""
                 initialValues={{ remember: true }}
@@ -37,16 +39,19 @@ function Login() {
                 <Form.Item<FieldType>
                     required={false}
                     label={
-                        <div>
+                        <Typography className="font-[700]">
                             Role <span className="text-red-500">*</span>
-                        </div>
+                        </Typography>
                     }
                     name="role"
                     rules={[{ required: true, message: '' }]}
                 >
                     <Select
+                        className="bg-white rounded-lg placeholder:text-second"
+                        variant="borderless"
                         size="large"
-                        style={{ width: '100%' }}
+                        popupClassName="mt-10"
+                        style={{ width: '100%', height: '56px' }}
                         options={[
                             { value: 'Recruitment', label: 'Recruitment' },
                             { value: 'Student', label: 'Student' },
@@ -58,38 +63,42 @@ function Login() {
                 <Form.Item<FieldType>
                     required={false}
                     label={
-                        <div>
+                        <Flex className="font-[700]">
                             Email <span className="text-red-500">*</span>
-                        </div>
+                        </Flex>
                     }
                     name="email"
                     rules={[{ required: true, message: '' }]}
                 >
-                    <Input size="large" />
+                    <Input className="bg-white p-4 placeholder:text-second" variant="borderless" size="large" />
                 </Form.Item>
 
                 <Form.Item<FieldType>
                     label={
-                        <div>
+                        <Flex className="font-[700]">
                             Mật khẩu <span className="text-red-500">*</span>
-                        </div>
+                        </Flex>
                     }
                     required={false}
                     name="password"
                     rules={[{ required: true, message: '' }]}
                 >
-                    <Input.Password size="large" />
+                    <Input.Password
+                        className="bg-white p-4 placeholder:text-second"
+                        variant="borderless"
+                        size="large"
+                    />
                 </Form.Item>
 
                 <Form.Item<FieldType> name="isRemember" valuePropName="checked" className="w-full">
                     <div className="flex justify-between items-center w-full">
                         <Checkbox>Ghi nhớ đăng nhập</Checkbox>
-                        <Link
-                            to={window.origin + '/auth/forgot-password'}
+                        <Typography
+                            onClick={() => router.push(path.forgotPassword)}
                             className="text-primary underline hover:text-primary hover:underline"
                         >
                             Quên mật khẩu?
-                        </Link>
+                        </Typography>
                     </div>
                 </Form.Item>
                 <ReCAPTCHA className="mb-5" onChange={onChange} sitekey={'6Lc9hJkpAAAAAOq_Wg7DXHLNpCHLy0eTAEYTfuIR'} />

@@ -5,31 +5,50 @@ import { Button } from 'antd';
 import PersonIcon from '../../assets/icon/person';
 import RegisterIcon from '../../assets/icon/register';
 import { usePathname, useRouter } from '../../routes/hooks';
+import FindJobIcon from '../../assets/icon/findJob';
+import EnterPriseRegisterIcon from '../../assets/icon/enterpriseRegister';
+import { path } from '../../routes/path';
 
 enum Roles {
     RECRUITMENT,
     STUDENT,
 }
+const navigateStudent = [
+    {
+        name: 'Xem JD yêu cầu tuyển dụng',
+        id: 0,
+        path: path.student,
+        icon: <PersonIcon color="inherit" />,
+    },
+    {
+        name: 'Đăng ký trực tuyến',
+        id: 1,
+        path: path.student_register,
+        icon: <RegisterIcon color="inherit" />,
+    },
+];
+const navigateRecruitment = [
+    {
+        name: 'Tìm kiếm việc làm',
+        id: 0,
+        path: path.recruitment,
+        icon: <FindJobIcon color="inherit" />,
+    },
+    {
+        name: 'Doanh nghiệp đăng ký',
+        id: 1,
+        path: path.recruitment_register,
+        icon: <EnterPriseRegisterIcon color="inherit" />,
+    },
+];
 function HeaderDesktop() {
     let role = Roles.RECRUITMENT;
     const pathname = usePathname();
     const router = useRouter();
     console.log(pathname);
 
-    const navigate = [
-        {
-            name: 'Xem JD yêu cầu tuyển dụng',
-            id: 0,
-            path: '/',
-            icon: <PersonIcon color="inherit" />,
-        },
-        {
-            name: 'Đăng ký trực tuyến',
-            id: 1,
-            path: '/student/register-online',
-            icon: <RegisterIcon color="inherit" />,
-        },
-    ];
+    const navigate = pathname.includes(path.recruitment) ? [...navigateRecruitment] : [...navigateStudent];
+
     return (
         <div className="h-header fixed right-0 left-0 top-0 bg-white p-2 z-[10000000] ">
             <div className="max-w-screen-xl w-full m-auto h-full">
@@ -55,29 +74,27 @@ function HeaderDesktop() {
                             </div>
                         </div>
                     )} */}
-                    {role === Roles.RECRUITMENT && (
-                        <div className="flex justify-end items-center gap-4">
-                            {navigate.map((item, index) => (
+                    <div className="flex justify-end items-center gap-4">
+                        {navigate.map((item, index) => (
+                            <div
+                                onClick={() => {
+                                    router.replace(item.path);
+                                }}
+                                key={index}
+                                className={` ${
+                                    pathname === item.path && 'text-primary'
+                                } hover:text-primary   cursor-pointer relative flex justify-center items-center gap-2 text-md`}
+                            >
+                                {item.icon}
+                                <h6 className="text-[20px] font-medium">{item.name}</h6>
                                 <div
-                                    onClick={() => {
-                                        router.push(item.path);
-                                    }}
-                                    key={index}
-                                    className={` ${
-                                        pathname === item.path && 'text-primary'
-                                    } hover:text-primary   cursor-pointer relative flex justify-center items-center gap-2 text-md`}
-                                >
-                                    {item.icon}
-                                    <h6 className="text-[20px] font-medium">{item.name}</h6>
-                                    <div
-                                        className={`h-2 w-2 rounded-full ${
-                                            pathname === item.path && 'bg-btn-primary'
-                                        } absolute -bottom-2 right-1/2 translate-x-1/2`}
-                                    ></div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                                    className={`h-2 w-2 rounded-full ${
+                                        pathname === item.path && 'bg-btn-primary'
+                                    } absolute -bottom-2 right-1/2 translate-x-1/2`}
+                                ></div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

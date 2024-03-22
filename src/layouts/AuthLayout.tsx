@@ -9,8 +9,8 @@ type AuthLayoutProps = {
 };
 function AuthLayout(props: AuthLayoutProps) {
     return (
-        <div className="w-screen flex justify-center pt-10">
-            <div className="max-w-screen-xl w-full ">
+        <div className="w-screen overflow-hidden bg-second h-screen flex justify-center ">
+            <div className="max-w-screen-xl w-full pt-10">
                 <div className="grid grid-cols-2 ">
                     <div className="flex justify-start items-center gap-2 ">
                         <CompanyIcon1 />
@@ -24,8 +24,8 @@ function AuthLayout(props: AuthLayoutProps) {
                         VÀ QUẢN LÝ SINH VIÊN THỰC TẬP
                     </h1>
                 </div>
-                <div className="grid grid-cols-2 gap-24 h-full m-auto min-h-[60vh]">
-                    <div className="flex flex-col pt-10 justify-center h-full">
+                <div className="grid grid-cols-2 gap-24 h-full min-h-[60vh]">
+                    <div className="flex flex-col justify-center h-full">
                         {props.children}
                         <Outlet />
                     </div>
